@@ -1,633 +1,588 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
-    
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hU1C399fGbab5s8vT8Q6W3Y6"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="css/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-    />
-    <script src="js/script.js" defer></script>
-    <title>Mon Portfolio</title>
-  </head>
-  <body>
-    <!-- MENU / NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar fixed-top">
-      <div class="container">
-        <a class="navbar-brand font-weight-bold" href="#about"
-          >Chrys Sanne-Tia</a
-        >
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div
-          class="collapse navbar-collapse justify-content-end"
-          id="navbarNav"
-        >
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="#about">Accueil</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#skills">Compétences</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#Experience">Expérience</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#education">Éducation</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#portfolio">Projets</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#recommendations">Recommandations</a>
-            </li>
-          </ul>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio Futuriste de Chrys Sanne-Tia — Développeur Web Full-Stack PHP / Laravel / React. Inspiré de la philosophie de Rasmus Lerdorf.">
+    <meta name="author" content="Chrys Sanne-Tia">
+    <title>Chrys Sanne-Tia | Portfolio Futuriste PHP</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Futuriste Intégré -->
+    <link rel="stylesheet" href="css/futuristic.css">
+</head>
+<body>
+
+    <!-- Fond de particules constellation animé -->
+    <canvas id="cyber-canvas"></canvas>
+    <div class="scanlines"></div>
+
+    <!-- HUD Ticker Supérieur (Indicateurs en temps réel Rasmus Lerdorf) -->
+    <header id="hud-ticker">
+        <div class="hud-left">
+            <span class="hud-indicator">
+                <span class="hud-pulse"></span> SYSTEM: ONLINE
+            </span>
+            <span class="hud-metric hud-hide-mobile">
+                CORE: <strong>PHP 8.3</strong>
+            </span>
+            <span class="hud-metric hud-hide-mobile">
+                MINDSET: <strong>RASMUS LERDORF CONCEPT</strong>
+            </span>
         </div>
-      </div>
+        <div class="hud-right">
+            <span id="hud-clock" class="hud-metric">UTC --:--:--</span>
+            <button id="sound-toggle-btn" class="hud-btn" onclick="cyberAudio.toggle()" title="Activer / Désactiver les sons futuristes">
+                &#128263; SFX OFF
+            </button>
+            <button class="hud-btn" onclick="openTerminal()" title="Ouvrir le terminal interactif (Ctrl+K)">
+                &#62;_ CLI [Ctrl+K]
+            </button>
+        </div>
+    </header>
+
+    <!-- Navigation Principale -->
+    <nav id="main-nav">
+        <div class="nav-container">
+            <a href="#hero" class="nav-brand">
+                <span class="brand-code">&lt;</span>Chrys Sanne-Tia<span class="brand-code">/&gt;</span>
+                <span class="brand-tag">PHP_ENGINE</span>
+            </a>
+            <div class="nav-links-wrap">
+                <ul id="nav-menu">
+                    <li><a href="#hero" class="nav-link active">Accueil</a></li>
+                    <li><a href="#philosophy" class="nav-link">Philosophie</a></li>
+                    <li><a href="#skills" class="nav-link">Compétences</a></li>
+                    <li><a href="#experience" class="nav-link">Expérience</a></li>
+                    <li><a href="#education" class="nav-link">Éducation</a></li>
+                    <li><a href="#projects" class="nav-link">Projets</a></li>
+                    <li><a href="#recommendations" class="nav-link">Avis</a></li>
+                </ul>
+                <button class="nav-toggle" onclick="document.getElementById('nav-menu').classList.toggle('open')" aria-label="Menu Mobile">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
     </nav>
 
-    <!-- SECTION ABOUT -->
-    <section id="about" class="container-fluid">
-      <div class="container">
-        <div class="row align-items-center justify-content-center">
-          <div class="col-12 col-md-4 text-center profile-picture">
-            <img
-              src="images/Tof.jpeg"
-              alt="photo sanne-tia"
-              class="rounded-circle"
-            />
-          </div>
-          <div class="col-12 col-md-6 heading">
-            <h1>Chrys Sanne-Tia</h1>
-            <h3>Développeur Web</h3>
-            <a
-              href="Docs/Cv New ST 2026 .pdf"
-              class="btn btn-danger"
-              target="_blank"
-              >Télécharger mon CV</a
-            >
-          </div>
+    <!-- Contenu Principal -->
+    <main class="page-container">
+
+        <!-- SECTION HERO -->
+        <section id="hero">
+            <div class="hero-grid">
+                <div class="hero-photo-wrapper">
+                    <div class="orbit-ring"></div>
+                    <div class="hex-frame">
+                        <div class="hex-frame-inner">
+                            <img src="images/Tof.jpeg" alt="Photo de Chrys Sanne-Tia" loading="eager">
+                            <div class="hex-scanner"></div>
+                        </div>
+                    </div>
+                    <div class="avatar-badge">
+                        <span class="hud-pulse"></span>
+                        <span>DISPONIBLE / OPEN TO WORK</span>
+                    </div>
+                </div>
+
+                <div class="hero-content">
+                    <p class="hero-tag">&gt; sys_init_profile: <span class="blink">chrys_sanne_tia.php</span></p>
+                    <h1 class="glitch" data-text="Chrys Sanne-Tia">Chrys Sanne-Tia</h1>
+                    <div class="hero-subtitle">
+                        <span>Développeur Web Full-Stack</span>
+                        <span style="color:var(--purple);">&#9670;</span>
+                        <strong>PHP / Laravel / React / MySQL</strong>
+                    </div>
+                    <p class="hero-bio">
+                        Développeur passionné par la conception d&apos;architectures web pérennes, réactives et performantes. Fidèle à la philosophie de Rasmus Lerdorf (créateur de PHP), je privilégie le pragmatisme, l&apos;efficacité serveur et la résolution concrète des défis techniques.                    </p>
+                    <div class="hero-badges">
+                        <span class="hero-chip highlight">&#9889; Philosophie Rasmus Lerdorf</span>
+                        <span class="hero-chip">&#127757; Côte d'Ivoire</span>
+                        <span class="hero-chip">&#128736; Zero Bloat &amp; Haute Vitesse</span>
+                        <span class="hero-chip">&#127891; Licence Génie Logiciel</span>
+                    </div>
+                    <div class="hero-cta">
+                        <a href="Docs/Cv New ST 2026 .pdf" target="_blank" class="btn-neon btn-primary-neon">
+                            <span>&#8681;</span> Télécharger mon CV (PDF)
+                        </a>
+                        <a href="#projects" class="btn-neon btn-secondary-neon">
+                            <span>&#9672;</span> Explorer mes projets
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION PHILOSOPHIE RASMUS LERDORF -->
+        <section id="philosophy">
+            <div class="lerdorf-box">
+                <div class="lerdorf-header">
+                    <div class="lerdorf-title-wrap">
+                        <span class="lerdorf-icon">&#9889;</span>
+                        <div>
+                            <h3>Le Principe PHP de Rasmus Lerdorf</h3>
+                            <p class="lerdorf-sub">"Simple, ultra-rapide, orienté résultats concrets sans sur-ingénierie"</p>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="hero-chip highlight">PARADIGME : PRAGMATISME PUR</span>
+                    </div>
+                </div>
+                <div class="lerdorf-grid">
+                                            <div class="lerdorf-card">
+                            <div class="lerdorf-card-num">// 01</div>
+                            <h4>Efficience &amp; Vitesse Serveur</h4>
+                            <p>Rendu en quelques millisecondes sans overhead de compilation. Le serveur délivre exactement ce que le client demande.</p>
+                        </div>
+                                            <div class="lerdorf-card">
+                            <div class="lerdorf-card-num">// 02</div>
+                            <h4>Zéro Dépendance Superflue</h4>
+                            <p>Aucun gigaoctet de modules éphémères. Un socle PHP/HTML/CSS natif, robuste, prévisible et maintenable pour les 20 prochaines années.</p>
+                        </div>
+                                            <div class="lerdorf-card">
+                            <div class="lerdorf-card-num">// 03</div>
+                            <h4>Pragmatisme Pur</h4>
+                            <p>&quot;Personal Home Page Tools&quot; : Résoudre les problèmes d’abord. Le code sert l’utilisateur, non l’ego de la sur-ingénierie.</p>
+                        </div>
+                                            <div class="lerdorf-card">
+                            <div class="lerdorf-card-num">// 04</div>
+                            <h4>Pérennité &amp; Écologie Web</h4>
+                            <p>Empreinte mémoire infime, compatibilité universelle avec tous les hébergeurs et résilience éprouvée face au temps.</p>
+                        </div>
+                                    </div>
+            </div>
+        </section>
+
+        <!-- SECTION COMPÉTENCES -->
+        <section id="skills">
+            <div class="section-header">
+                <span class="section-tag">&lt;skills_matrix&gt;</span>
+                <h2>Arsenal Technique</h2>
+                <div class="neon-divider"></div>
+            </div>
+
+            <div class="skills-grid">
+                                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <span class="skill-card-icon">&#60;/&#62;</span>
+                            <h3>Front-End</h3>
+                        </div>
+                        <div class="skill-card-body">
+                                                            <a href="https://developer.mozilla.org/fr/docs/Web/HTML" target="_blank" class="skill-chip">
+                                    <span class="chip-dot"></span>
+                                    <span>HTML5</span>
+                                </a>
+                                                            <a href="https://devdocs.io/css/" target="_blank" class="skill-chip">
+                                    <span class="chip-dot"></span>
+                                    <span>CSS3</span>
+                                </a>
+                                                            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" class="skill-chip">
+                                    <span class="chip-dot"></span>
+                                    <span>JavaScript</span>
+                                </a>
+                                                            <a href="https://getbootstrap.com/" target="_blank" class="skill-chip">
+                                    <span class="chip-dot"></span>
+                                    <span>Bootstrap</span>
+                                </a>
+                                                            <a href="https://react.dev/" target="_blank" class="skill-chip">
+                                    <span class="chip-dot"></span>
+                                    <span>React JS</span>
+                                </a>
+                                                    </div>
+                    </div>
+                                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <span class="skill-card-icon">&#9881;</span>
+                            <h3>Back-End &amp; BDD</h3>
+                        </div>
+                        <div class="skill-card-body">
+                                                            <a href="https://www.php.net/downloads.php" target="_blank" class="skill-chip">
+                                    <span class="chip-dot"></span>
+                                    <span>PHP 8+</span>
+                                </a>
+                                                            <a href="https://laravel.com/" target="_blank" class="skill-chip">
+                                    <span class="chip-dot"></span>
+                                    <span>Laravel</span>
+                                </a>
+                                                            <a href="https://www.mysql.com/fr/" target="_blank" class="skill-chip">
+                                    <span class="chip-dot"></span>
+                                    <span>MySQL</span>
+                                </a>
+                                                            <a href="#" target="_blank" class="skill-chip">
+                                    <span class="chip-dot"></span>
+                                    <span>Architecture MVC</span>
+                                </a>
+                                                            <a href="#" target="_blank" class="skill-chip">
+                                    <span class="chip-dot"></span>
+                                    <span>API REST</span>
+                                </a>
+                                                    </div>
+                    </div>
+                                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <span class="skill-card-icon">&#128736;</span>
+                            <h3>Outils &amp; CMS</h3>
+                        </div>
+                        <div class="skill-card-body">
+                                                            <a href="https://github.com/signup" target="_blank" class="skill-chip">
+                                    <span class="chip-dot"></span>
+                                    <span>Git / GitHub</span>
+                                </a>
+                                                            <a href="https://fr.wordpress.org/" target="_blank" class="skill-chip">
+                                    <span class="chip-dot"></span>
+                                    <span>WordPress</span>
+                                </a>
+                                                            <a href="https://new.drupal.org/home" target="_blank" class="skill-chip">
+                                    <span class="chip-dot"></span>
+                                    <span>Drupal</span>
+                                </a>
+                                                            <a href="#" target="_blank" class="skill-chip">
+                                    <span class="chip-dot"></span>
+                                    <span>Linux / Bash</span>
+                                </a>
+                                                    </div>
+                    </div>
+                            </div>
+
+            <div class="section-footer">
+                <span class="section-tag">&lt;/skills_matrix&gt;</span>
+            </div>
+        </section>
+
+        <!-- SECTION EXPÉRIENCE -->
+        <section id="experience">
+            <div class="section-header">
+                <span class="section-tag">&lt;experience_log&gt;</span>
+                <h2>Expérience Professionnelle</h2>
+                <div class="neon-divider"></div>
+            </div>
+
+            <div class="timeline">
+                                                        <div class="tl-entry tl-left">
+                        <div class="tl-badge">&#9733;</div>
+                        <div class="tl-panel">
+                            <h3>TENET CORP</h3>
+                            <h4>Stage de Validation BTS — Développeur Web</h4>
+                            <span class="tl-date">&#9200; Janvier 2025 - Mars 2025</span>
+                            <ul class="tl-tasks">
+                                                                    <li>Conception et développement complet d&apos;un site web de gestion d&apos;une salle de gym (inscriptions, abonnements, planning).</li>
+                                                                    <li>Extension du logiciel interne de l&apos;entreprise avec de nouveaux modules fonctionnels.</li>
+                                                                    <li>Collaboration étroite avec l&apos;équipe technique sur des livrables de production et optimisation des requêtes BDD.</li>
+                                                            </ul>
+                        </div>
+                    </div>
+                                                        <div class="tl-entry tl-right">
+                        <div class="tl-badge">&#9733;</div>
+                        <div class="tl-panel">
+                            <h3>Hackathon Google</h3>
+                            <h4>Développeur Web &amp; Mobile</h4>
+                            <span class="tl-date">&#9200; 20 Juillet 2025</span>
+                            <ul class="tl-tasks">
+                                                                    <li>Développement d&apos;une plateforme moderne dédiée à la traduction et à la valorisation des langues locales.</li>
+                                                                    <li>Optimisation des temps de réponse et intégration d&apos;interfaces adaptatives pour smartphones et navigateurs lents.</li>
+                                                                    <li>Déploiement rapide sous contrainte de temps et travail collaboratif en méthode agile.</li>
+                                                            </ul>
+                        </div>
+                    </div>
+                            </div>
+
+            <div class="section-footer">
+                <span class="section-tag">&lt;/experience_log&gt;</span>
+            </div>
+        </section>
+
+        <!-- SECTION ÉDUCATION -->
+        <section id="education">
+            <div class="section-header">
+                <span class="section-tag">&lt;academic_trace&gt;</span>
+                <h2>Éducation &amp; Certifications</h2>
+                <div class="neon-divider"></div>
+            </div>
+
+            <div class="timeline">
+                                                        <div class="tl-entry tl-left">
+                        <div class="tl-badge">&#127891;</div>
+                        <div class="tl-panel">
+                            <h3>GECOS FORMATION</h3>
+                            <h4>Licence Professionnelle en Génie Logiciel</h4>
+                            <span class="tl-date">&#9200; 2022 - 2025</span>
+                            <p>Formation supérieure en ingénierie logicielle : algorithmique avancée, bases de données relationnelles, conception MVC et architectures client-serveur.</p>
+                        </div>
+                    </div>
+                                                        <div class="tl-entry tl-right">
+                        <div class="tl-badge">&#127891;</div>
+                        <div class="tl-panel">
+                            <h3>GECOS FORMATION</h3>
+                            <h4>Brevet de Technicien Supérieur (BTS IDA)</h4>
+                            <span class="tl-date">&#9200; 2022 - 2024</span>
+                            <p>Informatique et Développement d&apos;Applications. Maîtrise des fondamentaux de la programmation web, de l&apos;administration réseau et des systèmes de gestion.</p>
+                        </div>
+                    </div>
+                                                        <div class="tl-entry tl-left">
+                        <div class="tl-badge">&#127891;</div>
+                        <div class="tl-panel">
+                            <h3>Formation Autodidacte &amp; Spécialisée (Udemy / Projets)</h3>
+                            <h4>Perfectionnement Full-Stack (PHP, Laravel, React, MySQL)</h4>
+                            <span class="tl-date">&#9200; 2023 - Présent</span>
+                            <p>Réalisation continue d’applications pratiques concrètes, sécurisation des formulaires, gestion des sessions, authentification et intégration API.</p>
+                        </div>
+                    </div>
+                                                        <div class="tl-entry tl-right">
+                        <div class="tl-badge">&#127891;</div>
+                        <div class="tl-panel">
+                            <h3>Collège Saint Chalmel Yopougon</h3>
+                            <h4>Baccalauréat Série D (Scientifique)</h4>
+                            <span class="tl-date">&#9200; 2022</span>
+                            <p>Obtention du baccalauréat scientifique avec une solide base en logique mathématique et raisonnement analytique.</p>
+                        </div>
+                    </div>
+                            </div>
+
+            <div class="section-footer">
+                <span class="section-tag">&lt;/academic_trace&gt;</span>
+            </div>
+        </section>
+
+        <!-- SECTION PROJETS -->
+        <section id="projects">
+            <div class="section-header">
+                <span class="section-tag">&lt;holocron_projects&gt;</span>
+                <h2>Projets Réalisés</h2>
+                <div class="neon-divider"></div>
+            </div>
+
+            <!-- Filtres de Projets -->
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all" onclick="filterProjects('all')">Tous les projets</button>
+                <button class="filter-btn" data-filter="php" onclick="filterProjects('php')">PHP / Backend</button>
+                <button class="filter-btn" data-filter="fullstack" onclick="filterProjects('fullstack')">Full-Stack</button>
+                <button class="filter-btn" data-filter="frontend" onclick="filterProjects('frontend')">Front-End</button>
+            </div>
+
+            <div class="projects-grid">
+                                    <div class="project-card" data-tech="php PHP / MySQL / CSS3">
+                        <div class="project-top-bar">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="project-filename">hébergeur_d&apos;images.php</span>
+                        </div>
+                        <div class="project-body">
+                            <h3>Hébergeur d&apos;Images</h3>
+                            <span class="project-tech">PHP / MySQL / CSS3</span>
+                            <p>Application web sécurisée permettant de téléverser, indexer, prévisualiser et partager des fichiers images en ligne avec génération d&apos;URLs uniques.</p>
+                        </div>
+                        <div class="project-footer">
+                            <a href="https://github.com/CHRYSOVR/Hebergeur-Images" target="_blank" class="btn-neon btn-small-neon btn-primary-neon">
+                                &#9656; Voir sur GitHub
+                            </a>
+                        </div>
+                    </div>
+                                    <div class="project-card" data-tech="frontend HTML5 / CSS3 / JavaScript">
+                        <div class="project-top-bar">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="project-filename">cv_en_ligne_interactif.php</span>
+                        </div>
+                        <div class="project-body">
+                            <h3>CV en Ligne Interactif</h3>
+                            <span class="project-tech">HTML5 / CSS3 / JavaScript</span>
+                            <p>Portfolio web responsive valorisant le parcours, les compétences et les projets avec navigation fluide et interactions dynamiques.</p>
+                        </div>
+                        <div class="project-footer">
+                            <a href="https://github.com/CHRYSOVR/CV_en_ligne_Interactif" target="_blank" class="btn-neon btn-small-neon btn-primary-neon">
+                                &#9656; Voir sur GitHub
+                            </a>
+                        </div>
+                    </div>
+                                    <div class="project-card" data-tech="php PHP / MySQL / Architecture MVC">
+                        <div class="project-top-bar">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="project-filename">raccourcisseur_d&apos;url_express.php</span>
+                        </div>
+                        <div class="project-body">
+                            <h3>Raccourcisseur d&apos;URL Express</h3>
+                            <span class="project-tech">PHP / MySQL / Architecture MVC</span>
+                            <p>Système d&apos;encodage et de redirection d&apos;adresses web avec suivi des clics et protection anti-injection dans la plus pure tradition des outils utilitaires PHP.</p>
+                        </div>
+                        <div class="project-footer">
+                            <a href="https://github.com/CHRYSOVR/Racourcisseur_D_URL_Express" target="_blank" class="btn-neon btn-small-neon btn-primary-neon">
+                                &#9656; Voir sur GitHub
+                            </a>
+                        </div>
+                    </div>
+                                    <div class="project-card" data-tech="fullstack PHP / MySQL / Bootstrap 5 / JS">
+                        <div class="project-top-bar">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="project-filename">site_de_gestion_de_salle_de_gym.php</span>
+                        </div>
+                        <div class="project-body">
+                            <h3>Site de Gestion de Salle de GYM</h3>
+                            <span class="project-tech">PHP / MySQL / Bootstrap 5 / JS</span>
+                            <p>Plateforme complète facilitant la gestion des adhérents, la souscription aux packs sportifs, les transactions financières et la planification des séances.</p>
+                        </div>
+                        <div class="project-footer">
+                            <a href="https://github.com/CHRYSOVR/gestionSalleDeGym" target="_blank" class="btn-neon btn-small-neon btn-primary-neon">
+                                &#9656; Voir sur GitHub
+                            </a>
+                        </div>
+                    </div>
+                                    <div class="project-card" data-tech="php PHP / MySQL / Sessions">
+                        <div class="project-top-bar">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="project-filename">espace_membre_classique.php</span>
+                        </div>
+                        <div class="project-body">
+                            <h3>Espace Membre Classique</h3>
+                            <span class="project-tech">PHP / MySQL / Sessions</span>
+                            <p>Module d&apos;authentification robuste avec hachage sécurisé des mots de passe (bcrypt), gestion des cookies de session et formulaire de contact direct.</p>
+                        </div>
+                        <div class="project-footer">
+                            <a href="https://github.com/CHRYSOVR/Espace_Membre_Classique" target="_blank" class="btn-neon btn-small-neon btn-primary-neon">
+                                &#9656; Voir sur GitHub
+                            </a>
+                        </div>
+                    </div>
+                                    <div class="project-card" data-tech="fullstack PHP / MySQL / Interface Streaming">
+                        <div class="project-top-bar">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="project-filename">espace_membre_façon_netflix.php</span>
+                        </div>
+                        <div class="project-body">
+                            <h3>Espace Membre Façon Netflix</h3>
+                            <span class="project-tech">PHP / MySQL / Interface Streaming</span>
+                            <p>Interface interactive inspirée de Netflix intégrant la gestion des profils multi-utilisateurs, catalogue multimédia et tableau de bord administrateur.</p>
+                        </div>
+                        <div class="project-footer">
+                            <a href="https://github.com/CHRYSOVR/espace_Membre_Comme_Netflix" target="_blank" class="btn-neon btn-small-neon btn-primary-neon">
+                                &#9656; Voir sur GitHub
+                            </a>
+                        </div>
+                    </div>
+                            </div>
+
+            <div class="section-footer">
+                <span class="section-tag">&lt;/holocron_projects&gt;</span>
+            </div>
+        </section>
+
+        <!-- SECTION RECOMMANDATIONS -->
+        <section id="recommendations">
+            <div class="section-header">
+                <span class="section-tag">&lt;peer_reviews&gt;</span>
+                <h2>Recommandations</h2>
+                <div class="neon-divider"></div>
+            </div>
+
+            <div class="rec-carousel">
+                <button class="rec-arrow rec-prev" onclick="changeSlide(-1)" aria-label="Avis précédent">&#10094;</button>
+                <div class="rec-track">
+                                            <div class="rec-slide active">
+                            <blockquote>
+                                <p>&laquo; Chrys fait preuve d&apos;une rigueur exemplaire et d&apos;une formidable capacité d&apos;apprentissage en développement web. Un atout majeur pour n&apos;importe quelle équipe technique ! &raquo;</p>
+                                <cite>— Directeur Technique — Projet Web</cite>
+                            </blockquote>
+                        </div>
+                                            <div class="rec-slide ">
+                            <blockquote>
+                                <p>&laquo; Son autonomie sur les technologies PHP et MySQL et sa maîtrise de l&apos;intégration front-end en font un développeur complet, pragmatique et ultra-efficace. &raquo;</p>
+                                <cite>— Lead Developer</cite>
+                            </blockquote>
+                        </div>
+                                    </div>
+                <button class="rec-arrow rec-next" onclick="changeSlide(1)" aria-label="Avis suivant">&#10095;</button>
+            </div>
+
+            <div class="rec-dots">
+                                    <button class="rec-dot active" onclick="goToSlide(0)" aria-label="Slide 1"></button>
+                                    <button class="rec-dot " onclick="goToSlide(1)" aria-label="Slide 2"></button>
+                            </div>
+
+            <div class="section-footer">
+                <span class="section-tag">&lt;/peer_reviews&gt;</span>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER HAUTE TECHNOLOGIE -->
+    <footer id="footer">
+        <div class="footer-inner page-container">
+            <p class="footer-tagline">&lt;/&gt; CONÇU &amp; DÉVELOPPÉ SELON L'ESPRIT DE RASMUS LERDORF</p>
+
+            <div class="social-links">
+                <a href="https://github.com/CHRYSOVR" target="_blank" class="social-link" title="GitHub">
+                    &#128187;
+                </a>
+                <a href="mailto:sannetia2003@example.com" class="social-link" title="Email direct">
+                    &#9993;
+                </a>
+                <a href="https://www.linkedin.com/in/aim%C3%A9-chrys-fabrice-s-b7249a1a9/" target="_blank" class="social-link" title="LinkedIn">
+                    &#128101;
+                </a>
+                <a href="https://Wa.me/+22597965200/" target="_blank" class="social-link" title="WhatsApp">
+                    &#128172;
+                </a>
+                <a href="https://www.facebook.com/chrysover30/" target="_blank" class="social-link" title="Facebook">
+                    &#127760;
+                </a>
+            </div>
+
+            <p class="footer-philosophy">
+                Performance : Généré côté serveur en 
+                <strong>0.26 ms</strong> 
+                | Mémoire RAM : <strong>787.7 KB</strong>
+                | Moteur : <strong>PHP Native</strong>
+            </p>
+
+            <p class="footer-copy">
+                &copy; 2026 — Chrys Sanne-Tia. Tous droits réservés.
+            </p>
         </div>
-      </div>
-    </section>
-
-    <!-- SECTION SKILLS (Design Moderne & Catégorisé avec Simple Icons) -->
-    <section id="skills">
-      <div class="divider"></div>
-      <div class="heading">
-        <h2>Compétences Techniques</h2>
-      </div>
-      <div class="container">
-        <div class="row">
-          
-          <!-- Catégorie 1: Front-End -->
-          <div class="col-12 col-md-4 mb-4">
-            <div class="skills-category-card p-4">
-              <h4 class="category-title"><i class="bi bi-code-slash text-danger mr-2"></i> Front-End</h4>
-              <div class="skills-grid">
-                <div class="skill-pill">
-                  <a href="https://developer.mozilla.org/fr/docs/Web/HTML">
-                  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/html5.svg" alt="HTML5" class="skill-si-icon">
-                  <span>HTML5</span>
-                  </a>
-                </div>
-                <div class="skill-pill">
-                  <a href="https://devdocs.io/css/">
-                  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/css3.svg" alt="CSS3" class="skill-si-icon">
-                  <span>CSS3</span>
-                  </a>
-                </div>
-                <div class="skill-pill">
-                  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
-                  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/javascript.svg" alt="JavaScript" class="skill-si-icon">
-                  <span>JavaScript</span>
-                  </a>
-                </div>
-                <div class="skill-pill">
-                  <a href="https://getbootstrap.com/">
-                  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/bootstrap.svg" alt="Bootstrap" class="skill-si-icon">
-                  <span>Bootstrap</span>
-                  </a>
-                </div>
-                <div class="skill-pill">
-                  <a href="https://react.dev/">
-                  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/react.svg" alt="React JS" class="skill-si-icon">
-                  <span>React JS</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Catégorie 2: Back-End & BDD -->
-          <div class="col-12 col-md-4 mb-4">
-            <div class="skills-category-card p-4">
-              <h4 class="category-title"><i class="bi bi-server text-danger mr-2"></i> Back-End & BDD</h4>
-              <div class="skills-grid">
-                <div class="skill-pill">
-                  <a href="https://www.php.net/downloads.php">
-                  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/php.svg" alt="PHP" class="skill-si-icon">
-                  <span>PHP</span>
-                  </a>
-                </div>
-                <div class="skill-pill">
-                  <a href="https://laravel.com/">
-                  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/laravel.svg" alt="Laravel" class="skill-si-icon">
-                  <span>Laravel</span>
-                  </a>
-                </div>
-                <div class="skill-pill">
-                  <a href="https://www.mysql.com/fr/">
-                  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mysql.svg" alt="MySQL" class="skill-si-icon">
-                  <span>MySQL</span>
-                  </a>
-                </div>
-                <div class="skill-pill">
-                  
-                  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/codeigniter.svg" alt="MVC" class="skill-si-icon">
-                  <span>Architecture MVC</span>
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Catégorie 3: Outils & CMS -->
-          <div class="col-12 col-md-4 mb-4">
-            <div class="skills-category-card p-4">
-              <h4 class="category-title"><i class="bi bi-tools text-danger mr-2"></i> Outils & CMS</h4>
-              <div class="skills-grid">
-                <div class="skill-pill">
-                  <a href="https://github.com/signup">
-                  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt="GitHub" class="skill-si-icon">
-                  <span>GitHub</span>
-                  </a>
-                </div>
-                <div class="skill-pill">
-                  <a href="https://fr.wordpress.org/">
-                  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/wordpress.svg" alt="WordPress" class="skill-si-icon">
-                  <span>WordPress</span>
-                  </a>
-                </div>
-                <div class="skill-pill">
-                  <a href="https://new.drupal.org/home">
-                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/drupal.svg" alt="Drupal" class="skill-si-icon">
-                    <span>Drupal</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION EXPERIENCE -->
-    <section id="Experience" class="container-fluid">
-      <div class="divider white"></div>
-      <div class="heading">
-        <h2>Expérience Professionnelle</h2>
-      </div>
-      <div class="timeline-wrapper">
-        <ul class="timeline">
-          <li>
-            <div class="timeline-badge">
-              <span class="bi-briefcase-fill"></span>
-            </div>
-            <div class="timeline-panel-container">
-              <div class="timeline-panel">
-                <div class="timeline-heading">
-                  <h3>TENET CORP</h3>
-                  <h4>Stage de Validation Bts</h4>
-                  <p class="text-muted">
-                    <span class="bi bi-clock-fill"></span> Janvier 2025 - Mars
-                    2025
-                  </p>
-                </div>
-                <div class="timeline-body">
-                  <p>
-                    Développement d'un site Web pour une gestion de salle de Gym
-                  </p>
-                  <p>
-                    Amélioration du logiciel de l'entreprise avec de nouvelles
-                    fonctionnalités
-                  </p>
-                  <p>
-                    Collaborations avec l'équipe de l'entreprise sur des projets
-                    d'envergure
-                  </p>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="timeline-badge">
-              <span class="bi-briefcase-fill"></span>
-            </div>
-            <div class="timeline-panel-container-inverted">
-              <div class="timeline-panel">
-                <div class="timeline-heading">
-                  <h3>Hackathon Google</h3>
-                  <h4>Développeur Web</h4>
-                  <p class="text-muted">
-                    <span class="bi bi-clock-fill"></span> 20 juillet 2025
-                  </p>
-                </div>
-                <div class="timeline-body">
-                  <p>
-                    Développement d'une plateforme moderne de traduction de
-                    langues locales
-                  </p>
-                  <p>
-                    Optimisation des performances de l'application web/mobile
-                  </p>
-                  <p>Mise en place de composants d'interface réutilisables</p>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- SECTION EDUCATION -->
-    <section id="education">
-      <div class="divider"></div>
-      <div class="heading">
-        <h2>Éducation & Diplômes</h2>
-      </div>
-      <div class="timeline-wrapper">
-        <ul class="timeline">
-          <li>
-            <div class="timeline-badge">
-              <span class="bi-mortarboard-fill"></span>
-            </div>
-            <div class="timeline-panel-container">
-              <div class="timeline-panel">
-                <div class="timeline-heading">
-                  <h3>GECOS FORMATION</h3>
-                  <h4>Licence Professionnelle en Génie Logiciel</h4>
-                  <p class="text-muted">
-                    <span class="bi bi-clock-fill"></span> 2022 - 2025
-                  </p>
-                </div>
-                <div class="timeline-body">
-                  <p>
-                    Obtention du diplôme de licence professionnelle et formation
-                    approfondie en programmation full-stack.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="timeline-badge">
-              <span class="bi-mortarboard-fill"></span>
-            </div>
-            <div class="timeline-panel-container-inverted">
-              <div class="timeline-panel">
-                <div class="timeline-heading">
-                  <h3>GECOS FORMATION</h3>
-                  <h4>
-                    BREVET DE TECHNICIEN SUPÉRIEUR EN INFORMATIQUE ET
-                    DÉVELOPPEMENT D'APPLICATIONS
-                  </h4>
-                  <p class="text-muted">
-                    <span class="bi bi-clock-fill"></span> 2022 - 2024
-                  </p>
-                </div>
-                <div class="timeline-body">
-                  <p>Obtention du diplôme du BTS</p>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="timeline-badge">
-              <span class="bi-mortarboard-fill"></span>
-            </div>
-            <div class="timeline-panel-container">
-              <div class="timeline-panel">
-                <div class="timeline-heading">
-                  <h3>Formation Autodidacte & Spécialisée Sur UDEMY</h3>
-                  <h4>Développement Web (Laravel, PHP, MySQL, ReactJS, etc...)</h4>
-                  <p class="text-muted">
-                    <span class="bi bi-clock-fill"></span> 2023 - Présent
-                  </p>
-                </div>
-                <div class="timeline-body">
-                  <p>
-                    Réalisation de projets pratiques (Applications web, gestion
-                    de bases de données, Git/GitHub).
-                  </p>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="timeline-badge">
-              <span class="bi-mortarboard-fill"></span>
-            </div>
-            <div class="timeline-panel-container-inverted">
-              <div class="timeline-panel">
-                <div class="timeline-heading">
-                  <h3>COLLÈGE SAINT CHALMEL YOPOUGON</h3>
-                  <h4>BACCALAURÉAT SÉRIE D</h4>
-                  <p class="text-muted">
-                    <span class="bi bi-clock-fill"></span> 2022
-                  </p>
-                </div>
-                <div class="timeline-body">
-                  <p>
-                    Obtention du diplôme du Baccalauréat en série D
-                  </p>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- SECTION PORTFOLIO -->
-    <section id="portfolio">
-      <div class="divider white"></div>
-      <div class="heading">
-        <h2>Projets</h2>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-md-4 mb-4">
-            <div class="card portfolio-card">
-              <div class="card-body">
-                <h5 class="card-title font-weight-bold">Hébergeur d'Images</h5>
-                <h6 class="card-subtitle mb-2 text-muted">PHP / MySQL / CSS</h6>
-                <p class="card-text">
-                  Application web développée pour stocker, gérer et partager des
-                  images en ligne de manière sécurisée.
-                </p>
-                <a
-                  href="https://github.com/CHRYSOVR/Hebergeur-Images"
-                  target="_blank"
-                  class="btn btn-danger btn-sm"
-                  >Voir sur GitHub</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-4 mb-4">
-            <div class="card portfolio-card">
-              <div class="card-body">
-                <h5 class="card-title font-weight-bold">
-                  CV en Ligne Interactif
-                </h5>
-                <h6 class="card-subtitle mb-2 text-muted">
-                  HTML5 / Bootstrap 4 / CSS3
-                </h6>
-                <p class="card-text">
-                  Site web personnel responsive présentant mon parcours, mes
-                  compétences et mes expériences professionnelles.
-                </p>
-                <a
-                  href="https://github.com/CHRYSOVR/CV_en_ligne_Interactif"
-                  target="_blank"
-                  class="btn btn-danger btn-sm"
-                  >Voir sur GitHub</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-4 mb-4">
-            <div class="card portfolio-card">
-              <div class="card-body">
-                <h5 class="card-title font-weight-bold">
-                  Raccourcisseur d'URL Express
-                </h5>
-                <h6 class="card-subtitle mb-2 text-muted">PHP / MySQL / CSS3</h6>
-                <p class="card-text">
-                  Un raccourcisseur interactif permettant de raccourcir toutes
-                  sortes de liens.
-                </p>
-                <a
-                  href="https://github.com/CHRYSOVR/Racourcisseur_D_URL_Express"
-                  target="_blank"
-                  class="btn btn-danger btn-sm"
-                  >Voir sur GitHub</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-4 mb-4">
-            <div class="card portfolio-card">
-              <div class="card-body">
-                <h5 class="card-title font-weight-bold">
-                  Site de Gestion de Salle de GYM
-                </h5>
-                <h6 class="card-subtitle mb-2 text-muted">PHP / MySQL / CSS3 / Bootstrap</h6>
-                <p class="card-text">
-                  Un site web de gestion de salle de gym moderne facilitant les inscriptions et les transactions.
-                </p>
-                <a
-                  href="https://github.com/CHRYSOVR/gestionSalleDeGym"
-                  target="_blank"
-                  class="btn btn-danger btn-sm"
-                  >Voir sur GitHub</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-4 mb-4">
-            <div class="card portfolio-card">
-              <div class="card-body">
-                <h5 class="card-title font-weight-bold">
-                  Espace Membre Classique
-                </h5>
-                <h6 class="card-subtitle mb-2 text-muted">PHP / MySQL / CSS3</h6>
-                <p class="card-text">
-                  Un espace membre classique en full PHP intégrant un formulaire de contact.
-                </p>
-                <a
-                  href="https://github.com/CHRYSOVR/Espace_Membre_Classique"
-                  target="_blank"
-                  class="btn btn-danger btn-sm"
-                  >Voir sur GitHub</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-4 mb-4">
-            <div class="card portfolio-card">
-              <div class="card-body">
-                <h5 class="card-title font-weight-bold">
-                  Espace Membre Façon Netflix
-                </h5>
-                <h6 class="card-subtitle mb-2 text-muted">PHP / MySQL / CSS3</h6>
-                <p class="card-text">
-                  Un espace membre inspiré de Netflix intégrant un système de gestion utilisateur.
-                </p>
-                <a
-                  href="https://github.com/CHRYSOVR/espace_Membre_Comme_Netflix"
-                  target="_blank"
-                  class="btn btn-danger btn-sm"
-                  >Voir sur GitHub</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION RECOMMENDATIONS -->
-    <section id="recommendations">
-      <div class="divider"></div>
-      <div class="heading">
-        <h2>Recommandations</h2>
-      </div>
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-12 col-md-8">
-            <div
-              id="recommendationCarousel"
-              class="carousel slide"
-              data-ride="carousel"
-            >
-              <div class="carousel-inner text-center">
-                <div class="carousel-item active">
-                  <div class="recommendation-box p-4">
-                    <p class="font-italic">
-                      "Chrys fait preuve d'une rigueur exemplaire et d'une
-                      formidable capacité d'apprentissage en développement web.
-                      Un atout majeur pour n'importe quelle équipe technique !"
-                    </p>
-                    <h5 class="font-weight-bold mt-3">
-                      Directeur Technique - Projet Web
-                    </h5>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="recommendation-box p-4">
-                    <p class="font-italic">
-                      "Son autonomie sur les technologies PHP et MySQL et sa
-                      maîtrise de l'intégration front-end en font un développeur
-                      complet et efficace."
-                    </p>
-                    <h5 class="font-weight-bold mt-3">Lead Developer</h5>
-                  </div>
-                </div>
-              </div>
-              <a
-                class="carousel-control-prev"
-                href="#recommendationCarousel"
-                role="button"
-                data-slide="prev"
-              >
-                <span
-                  class="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="sr-only">Précédent</span>
-              </a>
-              <a
-                class="carousel-control-next"
-                href="#recommendationCarousel"
-                role="button"
-                data-slide="next"
-              >
-                <span
-                  class="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="sr-only">Suivant</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer id="footer" class="text-white text-center py-4">
-      <div class="container">
-        <p class="mb-2">Retrouvez-moi sur mes réseaux :</p>
-        <div class="social-links mb-3">
-          <a
-            href="https://github.com/CHRYSOVR"
-            target="_blank"
-            class="text-white mx-2 h4"
-            ><span class="bi bi-github"></span
-          ></a>
-          <a href="mailto:sannetia2003@example.com" class="text-white mx-2 h4"
-            ><span class="bi bi-envelope-fill"></span
-          ></a>
-          <a
-            href="https://www.linkedin.com/in/aim%C3%A9-chrys-fabrice-s-b7249a1a9/"
-            target="_blank"
-            class="text-white mx-2 h4"
-            ><span class="bi bi-linkedin"></span
-          ></a>
-           <a
-            href="https://Wa.me/+22597965200/"
-            target="_blank"
-            class="text-white mx-2 h4"
-            ><i class="bi bi-whatsapp"></i>
-          </a>
-          <a
-            href="https://www.facebook.com/chrysover30/"
-            target="_blank"
-            class="text-white mx-2 h4"
-            ><i class="bi bi-facebook"></i>
-          </a>
-        </div>
-        <p class="small text-muted mb-0">
-          &copy; 2026 - Chrys Sanne-Tia. Tous droits réservés.
-        </p>
-      </div>
     </footer>
 
-    <!-- BOUTON RETOUR EN HAUT (FLOTTANT) -->
-    <a href="#about" id="backToTopBtn" class="back-to-top" title="Retour en haut">
-      <i class="bi bi-arrow-up"></i>
-    </a>
-  </body>
+    <!-- BOUTON FLOTTANT & RETOUR EN HAUT -->
+    <div class="floating-actions">
+        <button class="floating-btn" onclick="openTerminal()" title="Ouvrir le terminal (Ctrl+K)">
+            &#62;_
+        </button>
+        <button id="backToTopBtn" class="floating-btn back-to-top" title="Retour vers le haut">
+            &#8679;
+        </button>
+    </div>
+
+    <!-- MODAL DU TERMINAL CYBER CLI -->
+    <div id="terminal-modal" onclick="if(event.target === this) closeTerminal()">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-title">TERMINAL // CHRYS_SANNE_TIA_SHELL [v2.0]</span>
+                <button class="terminal-close" onclick="closeTerminal()">&times;</button>
+            </div>
+            <div class="terminal-body" id="terminal-output">
+                <div>Bienvenue dans le shell interactif de <strong>Chrys Sanne-Tia</strong>.</div>
+                <div style="color:var(--text-muted); margin-bottom: 10px;">Inspiré du moteur PHP de Rasmus Lerdorf. Tapez <span style="color:var(--cyan);">'help'</span> pour voir les commandes.</div>
+            </div>
+            <div class="terminal-prompt-line">
+                <span class="terminal-prompt-symbol">guest@chrys-terminal:~$</span>
+                <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" spellcheck="false" placeholder="Tapez une commande (help, about, skills, lerdorf, projects, cv, contact)...">
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts JavaScript -->
+    <script src="js/futuristic.js"></script>
+</body>
 </html>
